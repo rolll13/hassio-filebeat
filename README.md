@@ -4,9 +4,9 @@ This repository contains Filebeat Home Assistant addon used to ship home assista
 
 More info on beats: [here](https://www.elastic.co/beats/filebeat)
 
-Add-on documentation: [here](https://github.com/maretodoric/hassio-filebeat/blob/main/filebeat/DOCS.md)
+Add-on documentation: [here](https://github.com/rolll13/hassio-filebeat/blob/main/filebeat/DOCS.md)
 
-Add-on readme: [here](https://github.com/maretodoric/hassio-filebeat/blob/main/filebeat/README.md)
+Add-on readme: [here](https://github.com/rolll13/hassio-filebeat/blob/main/filebeat/README.md)
 
 [![Open this add-on in your Home Assistant instance.][repo-badge]][repo-url]
 
@@ -22,4 +22,4 @@ Add-on readme: [here](https://github.com/maretodoric/hassio-filebeat/blob/main/f
 [armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
 [i386-shield]: https://img.shields.io/badge/i386-no-red.svg
 [repo-badge]: https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg
-[repo-url]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/maretodoric/hassio-filebeat
+[repo-url]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/rolll13/hassio-filebeat
