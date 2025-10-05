@@ -6,7 +6,7 @@ COPY rootfs /
 ARG BUILD_ARCH
 
 RUN \
-    FB_VERSIONS="7.17.4 8.0.1 8.1.3 8.2.3" && \
+    FB_VERSIONS="8.2.3" && \
     find /opt -iname '*.yml' | xargs chmod 644 && \
     for ver in $FB_VERSIONS; do \
         echo "Downloading Filebeat version $ver for ${BUILD_ARCH}"; \
@@ -17,7 +17,7 @@ RUN \
             *) echo "Unsupported arch: ${BUILD_ARCH}" && exit 1 ;; \
         esac; \
         curl -sL --fail \
-          "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${ver}-linux-${ARCH_DL}.tar.gz" \
+          "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.2.3-linux-arm64.tar.gz" \
           -o /tmp/filebeat-${ver}.tar.gz && \
         tar -xzf /tmp/filebeat-${ver}.tar.gz -C /tmp && \
         mv /tmp/filebeat-${ver}-linux-${ARCH_DL}/filebeat /bin/filebeat-${ver} && \
