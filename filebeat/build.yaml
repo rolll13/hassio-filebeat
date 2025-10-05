@@ -5,5 +5,5 @@ build_from:
 labels:
   org.opencontainers.image.title: "Home Assistant Add-on: Filebeat"
   org.opencontainers.image.description: "Ships home-assistant.log (core) and/or journal logs to Elasticsearch server"
-  org.opencontainers.image.source: "https://github.com/maretodoric/hassio-filebeat"
+  org.opencontainers.image.source: "https://github.com/rolll13/hassio-filebeat"
   org.opencontainers.image.licenses: "Apache License 2.0"
