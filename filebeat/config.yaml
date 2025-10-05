@@ -1,6 +1,6 @@
 name: "Filebeat"
 description: "Filebeat addon that can be used to ship home-assistant.log file to your ES Cluster."
-version: "0.0.1"
+version: "0.0.2"
 #image: ""
 slug: "filebeat"
 init: false
@@ -11,7 +11,7 @@ apparmor: true
 homeassistant_api: true
 auth_api: true
 ingress: false
-homeassistant: 2022.3.1
+homeassistant: 2025.8.3
 arch:
   - armv7
   - amd64
@@ -27,7 +27,7 @@ options:
   es_pipeline_path: ""
   kibana_url: ""
   enable_journal: true
-  filebeat_version: 8.1.3
+  filebeat_version: 8.2.3
   fb_log_level: info
   clear_cache: false
   debug_mode: false
