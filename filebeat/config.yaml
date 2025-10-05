@@ -6,7 +6,7 @@ slug: "filebeat"
 init: false
 advanced: true
 journald: true
-url: https://github.com/maretodoric/hassio-filebeat
+url: https://github.com/rolll13/hassio-filebeat
 apparmor: true
 homeassistant_api: true
 auth_api: true
