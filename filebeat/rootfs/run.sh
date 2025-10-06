@@ -81,7 +81,7 @@ function _config_check {
 
 	# Symlink selected filebeat version
 	l "Using Filebeat version $(bashio::config filebeat_version)"
-	ln -sf /bin/filebeat-$(bashio::config filebeat_version) /bin/filebeat
+#	ln -s /bin/filebeat-$(bashio::config filebeat_version) /bin/filebeat
 }
 
 function _write_cfg {
