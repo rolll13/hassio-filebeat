@@ -180,11 +180,7 @@ fi
 
 function _run {
     l "Attempting test connection to ES host."
-    response=$(curl -v -k -s --user $(bashio::config es_username):$(bashio::config es_password) $(bashio::config es_url))
-    l "Raw response from ES:"
-    echo "${response}"
-    version=$(echo "${response}" | jq -r .version.number || true)
-    version=$(curl -s --user $(bashio::config es_username):$(bashio::config es_password) $(bashio::config es_url) | jq -r .version.number || true)
+    version=$(curl -sk --user $(bashio::config es_username):$(bashio::config es_password) $(bashio::config es_url) | jq -r .version.number || true)
 
     if [ -n "${version}" ] && [ "${version}" != "null" ]; then
         l "Connected to Elasticsearch/OpenSearch version ${version}"
