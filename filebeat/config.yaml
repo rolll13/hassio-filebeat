@@ -1,6 +1,6 @@
 name: "Filebeat"
 description: "Filebeat addon that can be used to ship home-assistant.log file to your ES Cluster."
-version: "0.0.4"
+version: "0.0.5"
 #image: ""
 slug: "filebeat"
 init: false
