@@ -180,20 +180,22 @@ fi
 
 function _run {
     l "Attempting test connection to ES host."
-    tagline=$(curl -s --user $(bashio::config es_username):$(bashio::config es_password) $(bashio::config es_url) | jq .tagline || true)
-    if [ "${tagline}" == '"You Know, for Search"' ]; then
-		if bashio::config.has_value kibana_url; then
-			l Importing saved search and index pattern...
-			sed -i "s|INDEXCHANGEME|$(bashio::config es_index)|g" /opt/filebeat/kibana/7/index-pattern/a95e6e90-f079-11ec-b291-63c17d65b83a.json
-			/bin/filebeat setup --path.config /opt/filebeat --path.home /opt/filebeat --path.data /data/filebeat -E setup.kibana.host=$(bashio::config kibana_url) -E logging.level=error -e
-		fi
-		l Starting filebeat in forked process...
-		/bin/filebeat --path.config /opt/filebeat --path.home /opt/filebeat --path.data /data/filebeat -e &
+    version=$(curl -s --user $(bashio::config es_username):$(bashio::config es_password) $(bashio::config es_url) | jq -r .version.number || true)
+
+    if [ -n "${version}" ] && [ "${version}" != "null" ]; then
+        l "Connected to Elasticsearch/OpenSearch version ${version}"
+        if bashio::config.has_value kibana_url; then
+            l Importing saved search and index pattern...
+            sed -i "s|INDEXCHANGEME|$(bashio::config es_index)|g" /opt/filebeat/kibana/7/index-pattern/a95e6e90-f079-11ec-b291-63c17d65b83a.json
+            /bin/filebeat setup --path.config /opt/filebeat --path.home /opt/filebeat --path.data /data/filebeat -E setup.kibana.host=$(bashio::config kibana_url) -E logging.level=error -e
+        fi
+        l "Starting filebeat in forked process..."
+        /bin/filebeat --path.config /opt/filebeat --path.home /opt/filebeat --path.data /data/filebeat -e &
         FILEBEAT_PID=$!
-	else
-		l e "Elasticsearch host appears to be unavailable/unreachable"
-		exit 1
-	fi
+    else
+        l e "Elasticsearch/OpenSearch host appears to be unavailable/unreachable"
+        exit 1
+    fi
 }
 
 function _restart {
