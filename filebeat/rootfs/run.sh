@@ -114,7 +114,9 @@ setup.template.pattern: $(bashio::config es_index)*
 setup.template.settings:
   index.number_of_shards: $(bashio::config es_number_of_shards)
   index.number_of_replicas: $(bashio::config es_number_of_replicas)
-$(if [[ $(bashio::config filebeat_version) =~ ^7 ]]; then echo -e "setup.ilm.enabled: false\n"; fi)
+setup.ilm.enabled: false
+setup.xpack.enabled: false
+setup.license.enabled: false
 output.elasticsearch:
   hosts: [ "$(bashio::config es_url)" ]
   username: $(bashio::config es_username)
@@ -126,12 +128,6 @@ output.elasticsearch:
   indices:
     - index: "$(bashio::config es_index)-%{+yyyy.MM.dd}"
 
-# Disable features not compatible with OpenSearch
-setup.ilm.enabled: false
-setup.template.enabled: true
-setup.template.overwrite: true
-setup.xpack.enabled: false
-setup.license.enabled: false
 
 logging.level: $(bashio::config fb_log_level)
 logging.metrics.enabled: false
