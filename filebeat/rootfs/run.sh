@@ -120,6 +120,18 @@ output.elasticsearch:
   username: $(bashio::config es_username)
   password: $(bashio::config es_password)
   $(if [[ $(bashio::config es_url) =~ ^https ]]; then echo -e "ssl.enabled: true\n  ssl.verification_mode: $(bashio::config es_ssl_verification_mode)"; fi)
+  # Добавлено для OpenSearch совместимости
+  compatibility_mode: true
+  allow_older_versions: true
+  indices:
+    - index: "$(bashio::config es_index)-%{+yyyy.MM.dd}"
+
+# Disable features not compatible with OpenSearch
+setup.ilm.enabled: false
+setup.template.enabled: true
+setup.template.overwrite: true
+setup.xpack.enabled: false
+setup.license.enabled: false
 
 logging.level: $(bashio::config fb_log_level)
 logging.metrics.enabled: false
