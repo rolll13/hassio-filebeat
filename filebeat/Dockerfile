@@ -13,7 +13,7 @@ RUN set -x \
     esac \
  && echo "Downloading Filebeat ${FB_VERSION} for ${ARCH_DL}" \
  && apt-get update && apt-get install -y curl ca-certificates tar \
- && curl -L --fail "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.2.3-linux-arm64.tar.gz" \
+ && curl -L --fail "http://192.168.68.200:33055/filebeat-8.2.3-linux-arm64.tar.gz" \
         -o /tmp/filebeat.tar.gz \
  && tar -xzf /tmp/filebeat.tar.gz -C /tmp \
  && mv /tmp/filebeat-${FB_VERSION}-linux-${ARCH_DL}/filebeat /bin/filebeat \
